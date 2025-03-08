@@ -1,0 +1,64 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.home-container {
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(1,78,5, 0.7), rgba(1,78,5, 0.945)),
+                url('../../../assets/images/backVerso.jpg') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content {
+    max-width: 600px;
+  }
+
+  .btn-light {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-weight: bold;
+  }
+
+// Animation
+@keyframes floating {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .content h1, .content p {
+    font-size: 2.5rem;
+    font-weight: bold;
+    animation: floating 3s ease-in-out infinite;
+  }
+
+  .content p {
+    font-size: 1.2rem;
+    animation: floating 3s ease-in-out infinite 0.5s; /* Délai pour un effet progressif */
+  }
+
+// Style boutton
+.btn-light {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .btn-light:hover {
+    background-color: #006427; /* Bleu Bootstrap */
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0px 4px 10px rgba(10, 163, 92, 0.527);
+  }
+

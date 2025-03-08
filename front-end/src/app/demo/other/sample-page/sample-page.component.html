@@ -1,0 +1,142 @@
+<div class="row">
+  <!-- column -->
+  <div class="col-lg-12">
+             
+              <div class="card">
+             
+                  <div class="card-body">
+                    <h4 class="card-title">Liste Classe</h4>
+                      <div class="d-flex mt-3">
+                          <input type="text" placeholder="rechercher" class="form-control w-auto"/>
+                          <button type="button" title="Cliquez sur ce boutton pour ajouter une classe" class="btn btn-primary btn-lg ms-auto" (click)=" openModal(modalContent, null)" [hidden]="!isButtonAjout" > + Ajouter</button>
+                      </div>
+                      <table class="table table-striped border mt-4">
+                          <thead>
+                              <tr>
+                                  <th>Code</th>
+                                  <th>Nom</th>
+                                  <th>Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td>
+                                      Moussa
+                                  </td>
+                                  <td>
+                                    Moussa test
+                                  </td>
+                                  <td>
+                                    <button type="submit" class="btn btn-warning m-2" title="Cliquez sur le bouton pour voir l'entree"><i class="bi bi-pen"></i></button>                                
+                                    <button type="submit" class="btn btn-success m-2" title="Cliquez sur le bouton pour l'entree modifier l'entree ">Modifier</button> |
+                                    <button type="submit" class="btn btn-danger m-2" title="Cliquez sur le bouton pour supprimer">Supprimer</button> 
+                                       
+                                    
+                                  </td>
+                                  <!-- <td>
+                                      <i-feather name="edit-3" class="feather-sm text-info me-2 pointer" (click)="openModal(modalLarge, agent)" *ngIf="isSRH"></i-feather>
+                                      <i-feather name="trash-2" class="feather-sm text-danger pointer" (click)="delete(agent)" [hidden]="!isButtonSupprimer" *ngIf="isSRH"></i-feather>
+                                      <i class="fas fa-print pointer text-primary m-2" (click)="openModalPrint(printAgent, agent)"></i>
+                                      <i name="edit-3" class="text-info me-2 fas fa-eye" (click)="openModalProfile(modalProfile, agent)" *ngIf="isSRH || isCH || isDG"></i>
+                                  </td> -->
+                              </tr>
+                          </tbody>
+                      </table>
+                    
+
+                      <div class="d-flex justify-content-between p-2">
+                      
+                      </div>
+                  </div>
+              </div>
+      
+  </div>
+
+</div>
+<ng-template #printAgent let-modal>
+  <div class=" modal-header">
+      <h5 class="modal-title " id="editLabel ">{{ editAddLabel }}</h5>
+      <button type="button" class="btn btn-primary" (click)="detailPersonnelPdf()"><i class="fas fa-print"></i></button>
+      <button type="button" class="btn btn-danger close mdi mdi-close" aria-label="Close"
+      (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+      <app-detail-agent [childProperty]="parentProperty"></app-detail-agent>
+  </div>
+ 
+</ng-template>
+<!--- Modal for complete Table -->
+<ng-template #modalLarge let-modal>
+  <div class=" modal-header">
+      <h5 class="modal-title " id="editLabel ">{{ editAddLabel }}</h5>
+      <button type="button" class="btn btn-danger close mdi mdi-close" aria-label="Close"
+      (click)="modal.dismiss( 'Cross click')"></button>
+  </div>
+  <div class="modal-body ">
+      <!-- ==================================-->
+      <!-- ======= Basic Nav ===== -->
+      <!-- ==================================-->
+      <div class="col-12">
+          <div class="card">
+              <div class="card-body">
+                  <ul ngbNav #nav="ngbNav" [(activeId)]="activeSelected " class="nav-tabs">
+                      <li [ngbNavItem]="1" [hidden]="!isAgent">
+                          <a ngbNavLink>Agent</a>
+                          <ng-template ngbNavContent>
+                              <app-agent-form #agentEditor [childProperty]="parentProperty" [childRole]="role" [hidden]="!isAgent "></app-agent-form>
+                          </ng-template>
+                      </li>
+                      
+                  </ul>
+
+                  <div [ngbNavOutlet]="nav " class="mt-2 "></div>
+              </div>
+          </div>
+      </div>
+      <!-- ==================================-->
+      <!-- ======= Alternative markup ===== -->
+      <!-- ==================================-->
+  </div>
+</ng-template>
+
+<!-- test d'integration du modal  -->
+
+
+<div class="row mb-2">
+    <div class="col-5">
+        <ng-template #modalContent>
+            <div class="modal-header bg-dark">
+              <h5 class="modal-title text-white"> Formulqire Classe </h5>
+              <button type=" button" class="btn-close btn-close-white" aria-label="Close" (click)="fermerModal()"></button>
+            </div>
+            <div class="modal-body">
+                <form action="javascript:">
+                    <div class="row mb-2">
+                        
+                            <div classe="col-5">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                </div>
+                <div classe="col-5">
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    </div>
+                </div>
+                   
+                
+            </div>
+                   
+                  </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" (click)="fermerModal()"> Close </button>
+              <button type="submit" class="btn btn-primary shadow-2"> Save changes </button>
+            </div>
+          </ng-template>
+    </div>
+ 
+</div>

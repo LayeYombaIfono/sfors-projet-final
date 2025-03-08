@@ -1,0 +1,166 @@
+<div class="container">
+    <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
+        <div ngbAccordion [closeOthers]="true">
+            <div ngbAccordionItem [collapsed]="false" [destroyOnHide]="false">
+                <h6 ngbAccordionHeader>
+                    <button  ngbAccordionButton>
+                        INFORMATIONS DE L'ENTREPRISE
+                    </button>
+                </h6>
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody>
+                        <ng-template>
+    
+                            <div class="row mt-2">
+                                <label for="nom" class="col-sm-2 col-form-label">Entreprise name</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control border border-secondary" formControlName="entrepriseName" id="entrepriseName"name="entrepriseName" >
+                                </div>
+                                            
+                                 <label for="prenoms" class="col-sm-2 col-form-label">Code NIF</label>
+                                 <div class="col-sm-4">
+                                      <input type="text" class="form-control border border-secondary" formControlName="codeNif" id="codeNif" name="codeNif"> 
+                                 </div>
+                             </div>
+                            
+                            <div class="row mt-2">
+                                <label for="nom" class="col-sm-2 col-form-label">N° RCCM</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control border border-secondary" formControlName="codeRccm" id="codeRccm" name="codeRccm">
+                                </div>
+                                            
+                                <label for="prenoms" class="col-sm-2 col-form-label">Code déclarant</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control border border-secondary"  formControlName="codeDeclarant" id="codeDeclarant" name="codeDeclarant"> 
+                                </div>
+                             </div>
+    
+                             <div class="row mt-2">
+                                <label for="nom" class="col-sm-2 col-form-label">Email</label>
+                                 <div class="col-sm-4">
+                                    <input type="text" class="form-control border border-secondary" formControlName="email" id="email" name="email">
+                                </div> 
+                        </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    
+        <div ngbAccordion [closeOthers]="true">
+            <div ngbAccordionItem [destroyOnHide]="false">
+                <h6 ngbAccordionHeader>
+                    <button  ngbAccordionButton>
+                        INFORMATIONS DU PARTICIPANT
+                    </button>
+                </h6>
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody>
+                        <ng-template>
+                            <div class="row mt-2"> 
+                                <label for="prenoms" class="col-sm-2 col-form-label">nom</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control border border-secondary" formControlName="nom" id="nom" name="nom"> 
+                                </div>
+                                <label for="nom" class="col-sm-2 col-form-label">Prénoms</label>
+                                <div class="col-sm-4">
+                                 <input type="text" class="form-control border border-secondary" formControlName="prenoms" id="prenoms" name="prenoms">
+                             </div>
+                            </div>
+                        
+                            <div class="row mt-2">
+                                <label for="prenoms" class="col-sm-2 col-form-label">Téléphone</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control border border-secondary" formControlName="telephone" id="telephone" name="telephone"> 
+                                </div>
+                                <label for="adress" class="col-sm-2 col-form-label">Adresse</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control border border-secondary" formControlName="adress" id="adress" name="adress">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <label for="sexe" class="col-sm-2 col-form-label">Sexe :</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control border border-secondary" id="sexe" name="sexe" formControlName="sexe">
+                                      <option *ngFor="let app of LesGenre" value="{{ app }}">
+                                        {{ app }}
+                                      </option>
+                                    </select>
+                                </div>
+                                <label for="codeDeclarant" class="col-sm-2 col-form-label">Date d'inscription</label>
+                                <div class="col-sm-4">
+                                    <input type="date" class="form-control border border-secondary" formControlName="dateInscription" id="dateInscription"
+                                    name="dateInscription">
+                                </div>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ngbAccordion [closeOthers]="true">
+            <div ngbAccordionItem [destroyOnHide]="false">
+                <h6 ngbAccordionHeader>
+                    <button  ngbAccordionButton>
+                        INFORMATIONS DE LA FORMATION
+                    </button>
+                </h6>
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody>
+                        <ng-template>
+                            <div class="row mt-2">
+                                <label for="codeDeclarant" class="col-sm-2 col-form-label">Date debut</label>
+                                <div class="col-sm-4">
+                                    <input type="date" class="form-control border border-secondary" formControlName="dateDebut" id="dateDebut"
+                                    name="dateDebut">
+                                </div>
+                                <label for="dateInscription" class="col-sm-2 col-form-label">Date fin</label>
+                                <div class="col-sm-4">
+                                    <input type="date" class="form-control border border-secondary" formControlName="dateFin" id="dateFin"
+                                    name="dateFin">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <label for="dateInscription" class="col-sm-2 col-form-label">Date publication</label>
+                                <div class="col-sm-4">
+                                    <input type="date" class="form-control border border-secondary" formControlName="datePublication" id="datePublication"
+                                    name="datePublication">
+                                </div>
+                                <label for="codeDeclarant" class="col-sm-2 col-form-label">Libelle formation</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control border border-secondary" formControlName="lebelleFormation" id="lebelleFormation"
+                                    name="lebelleFormation">
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <label for="dateInscription" class="col-sm-2 col-form-label">Description formation</label>
+                                <div class="col-sm-4">
+                                    <textarea class="form-control border border-secondary" rows="5" cols="66"
+                                    formControlName="descriptionFormation" id="descriptionFormation" name="descriptionFormation"> </textarea>
+                                </div>
+                            </div>   
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+       <div class="row mt-2">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-9 button-group">
+                <div class="pull-right btn-group col-5 mb-2">
+                    <button [disabled]="isButtonActive" type="button" class="btn btn-primary col-6" (click)="onActive()" title="Modifier" >
+                        <i class="mdi mdi-pencil-box yellow" aria-hidden="true"></i> Activer
+                    </button>
+                    <button class="btn btn-success col-6"  type="submit" [title]="
+                    inscriptionForm.valid
+                            ? 'Enregistrez vos données'
+                            : 'Verrouillé jusqu\'à correction des erreurs'
+                        " >
+                        <i class="icon-check" aria-hidden="true"> </i> Valider
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

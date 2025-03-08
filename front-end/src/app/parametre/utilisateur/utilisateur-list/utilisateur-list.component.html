@@ -1,0 +1,152 @@
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Liste des utilisateurs</h4>
+            <hr />
+    
+            <!-- Barre de recherche et contrôles -->
+            <div class="d-flex mt-3 align-items-center">
+              
+                    <input 
+                    type="text" 
+                    [formControl]="searchControl"
+                    class="form-control" 
+                    style="max-width: 300px;"
+                    placeholder="Rechercher par email, téléphone ou rôle..."
+                  />
+    
+                <div class="ms-3">
+                    <select class="form-select" style="width: auto;" [(ngModel)]="pageSize"
+                        (ngModelChange)="onPageSizeChange()">
+                        <option [ngValue]="3">3 éléments</option>
+                        <option [ngValue]="5">5 éléments</option>
+                        <option [ngValue]="10">10 éléments</option>
+                        <option [ngValue]="15">15 éléments</option>
+                    </select>
+                </div>
+    
+                <button type="button" class="btn btn-primary ms-auto" (click)="openModal(modalLarge)">
+                    <i class="fa fa-plus me-2"></i>Nouveau
+                </button>
+            </div>
+    
+            <!-- Message de chargement -->
+            <div *ngIf="loading" class="text-center mt-4">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Chargement...</span>
+                </div>
+            </div>
+    
+            <!-- Message d'erreur -->
+            <div *ngIf="error" class="alert alert-danger mt-4">
+                {{error}}
+            </div>
+    
+           
+            <!-- Tableau des utilisateurs -->
+            <div class="table-responsive mt-4" *ngIf="!loading && !error">
+                <table class="table table-striped border">
+                    <thead class="text-center">
+                        <tr>
+                            <th>N°</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Rôles</th>
+                            <th>En ligne</th>
+                            <th>État</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                  
+                <tbody class="text-center">
+                    <!--tr *ngFor="let utilisateur of utilisateursAffiches; let i = index" -->
+                    <tr *ngFor="let utilisateur of utilisateursAffiches; trackBy: trackByFn; let i = index">
+                        <td>{{(page - 1) * pageSize + i + 1}}</td>
+                        
+                        <td>
+                            {{utilisateur.email || 'Non renseigné'}}
+                        </td>
+                        <td>
+                            {{utilisateur.phone || 'Non renseigné'}}
+                        </td>
+                        <td>
+                            <span *ngFor="let role of utilisateur.roles || []" class="badge bg-info me-1">
+                                {{role}}
+                            </span>
+                            <span *ngIf="!utilisateur.roles?.length" class="text-muted">
+                                Aucun rôle
+                            </span>
+                        </td>
+                        <td>
+                            <span [class.text-success]="utilisateur.online" 
+                                  [class.text-danger]="!utilisateur.online">
+                                <i class="fa fa-circle"></i>
+                                {{utilisateur.online ? 'En ligne' : 'Hors ligne'}}
+                            </span>
+                        </td>
+                        <td>
+                            <span [class.text-success]="utilisateur.nonLocked"
+                                  [class.text-danger]="!utilisateur.nonLocked">
+                                <i [class]="utilisateur.nonLocked ? 'fa fa-unlock' : 'fa fa-lock'"></i>
+                                {{utilisateur.nonLocked ? 'Actif' : 'Bloqué'}}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2 justify-content-center">
+                                <button class="btn btn-outline-primary btn-sm"
+                                        (click)="openModal(modalLarge, utilisateur)">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                                <button class="btn btn-outline-danger btn-sm" 
+                                        (click)="deleteUtilisateur(utilisateur)">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Message si aucune donnée -->
+                    <tr *ngIf="utilisateursAffiches.length === 0">
+                        <td colspan="7" class="text-center py-4">
+                            Aucun utilisateur trouvé
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+    
+                <!-- Pagination -->
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize"
+                        [boundaryLinks]="true" [maxSize]="5" (pageChange)="onPageChange($event)">
+                        <ng-template ngbPaginationFirst>««</ng-template>
+                        <ng-template ngbPaginationLast>»»</ng-template>
+                        <ng-template ngbPaginationPrevious>«</ng-template>
+                        <ng-template ngbPaginationNext>»</ng-template>
+                        <ng-template ngbPaginationEllipsis>...</ng-template>
+                        <ng-template ngbPaginationNumber let-page>{{ page }}</ng-template>
+                    </ngb-pagination>
+    
+                    <div class="text-muted">
+                        Affichage de {{ (page - 1) * pageSize + 1 }} à
+                        {{ Math.min(page * pageSize, collectionSize) }} sur
+                        {{ collectionSize }} entrées
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <ng-template #modalLarge let-modal>
+        <div class="modal-header">
+            <h5 class="modal-title">{{ selectedUser ? '' : '' }}</h5>
+            <button class="btn-close" (click)="modal.dismiss()"></button>
+        </div>
+        <div class="modal-body">
+            <app-utilisateur-form 
+                [utilisateur]="selectedUser"
+                (saveUser)="onSaveUser($event); modal.close()">
+            </app-utilisateur-form>
+        </div>
+    </ng-template>
+</div>

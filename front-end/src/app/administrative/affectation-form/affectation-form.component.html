@@ -1,0 +1,54 @@
+<div class="container">
+    <form [formGroup]="affectationForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3 row">
+            <label for="nom" class="col-sm-3 col-form-label">Formateur </label>
+            <div class="col-sm-9">
+                <select name="" id="" class="form-control border border-secondary" formControlName="uuidFormateur">
+                   <option disabled selected>Veuillez choisir formateur ...</option>
+                   <option  *ngFor="let formateur of formateur" value="{{formateur.uuid}}">
+                    {{formateur.nom}} {{formateur.prenoms}}
+                    </option>
+               </select>
+            </div>
+        </div>
+    
+        <div class="mb-3 row">
+            <label for="nom" class="col-sm-3 col-form-label">Formation </label>
+            <div class="col-sm-9">
+                <select name="" id="" class="form-control border border-secondary" formControlName="uuidFormation">
+                   <option disabled selected>Veuillez choisir formation ...</option>
+                   <option  *ngFor="let formation of formation" value="{{formation.uuid}}">
+                    {{formation.libelleFormation}}
+                    </option>
+               </select>
+            </div>
+        </div>
+    
+        <div class="mb-3 row">
+            <label for="nom" class="col-sm-3 col-form-label">Date affectation</label>
+            <div class="col-sm-9">
+                <input type="Date" class="form-control border border-secondary" formControlName="dateAffectation" id="dateAffectation">
+               
+            </div>
+        </div>
+    
+       <div class="mb-3 row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9 button-group">
+                <div class="pull-right btn-group col-6 mb-2">
+                    <button [disabled]="isButtonActive" type="button" class="btn btn-outline-success col-6" (click)="onActive()" title="Modifier" >
+                        <i class="mdi mdi-pencil-box yellow" aria-hidden="true"></i> Activer
+                    </button>
+                    <button class="btn btn-primary col-6"  type="submit" [title]="
+                            affectationForm.valid
+                            ? 'Enregistrez vos données'
+                            : 'Verrouillé jusqu\'à correction des erreurs'
+                        " >
+                        <i class="fa fa-save green" aria-hidden="true"> </i> Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    
+    </form>
+</div>

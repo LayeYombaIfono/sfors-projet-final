@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-md-6">
+      <app-card cardTitle="Fade" [options]="false">
+        <div class="btn-page">
+          <button type="button" class="btn btn-primary" (click)="openMyModal('modal-1')"> Fade in &amp; Scale </button>
+          <app-animation-modal [modalID]="'modal-1'" [modalClass]="'md-effect-1'">
+            <ng-container *ngTemplateOutlet="modalContent"></ng-container>
+          </app-animation-modal>
+        </div>
+      </app-card>
+    </div>
+    <div class="col-md-6">
+      <app-card cardTitle="Slide" [options]="false">
+        <div class="btn-page">
+          <button type="button" class="btn btn-primary me-2" (click)="openMyModal('modal-2')"> Slide in (right) </button>
+          <app-animation-modal [modalID]="'modal-2'" [modalClass]="'md-effect-2'">
+            <ng-container *ngTemplateOutlet="modalContent"></ng-container>
+          </app-animation-modal>
+          <button type="button" class="btn btn-primary" (click)="openMyModal('modal-3')"> Slide in (bottom) </button>
+          <app-animation-modal [modalID]="'modal-3'" [modalClass]="'md-effect-3'">
+            <ng-container *ngTemplateOutlet="modalContent"></ng-container>
+          </app-animation-modal>
+        </div>
+      </app-card>
+    </div>

@@ -1,0 +1,60 @@
+<div class="container">
+   <div class="row">
+    <form [formGroup]="publicationForm" (ngSubmit)="onSubmit()">
+    
+        <div class="mb-3 row">
+            <label for="nom" class="col-sm-3 col-form-label">Formation </label>
+            <div class="col-sm-9">
+                <select name="" id="" class="form-control border border-secondary" formControlName="uuidFormation">
+                   <option disabled selected>Veuillez choisir formation ...</option>
+                   <option  *ngFor="let formation of formation" value="{{formation.uuid}}">
+                    {{formation.libelleFormation}}
+                    </option>
+               </select>
+            </div>
+        </div>
+    
+        <div class="mb-3 row">
+            <label for="nom" class="col-sm-3 col-form-label">Date Publication</label>
+            <div class="col-sm-9">
+                <input type="Date" class="form-control border border-secondary" formControlName="datePub" id="datePub">
+               
+            </div>
+        </div>
+    
+        <div class="mb-3 row">
+            <label for="nom" class="col-sm-3 col-form-label">Date début</label>
+            <div class="col-sm-9">
+                <input type="Date" class="form-control border border-secondary" formControlName="dateDebut" id="dateDebut">
+            </div>
+        </div>
+    
+        <div class="mb-3 row">
+            <label for="nom" class="col-sm-3 col-form-label">Date fin</label>
+            <div class="col-sm-9">
+                <input type="Date" class="form-control border border-secondary" formControlName="dateFin" id="dateFin">
+            </div>
+        </div>
+    
+       <div class="mb-3 row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-9 button-group">
+                <div class="pull-right btn-group col-6 mb-2">
+                    <button [disabled]="isButtonActive" type="button" class="btn btn-outline-success col-6" (click)="onActive()" title="Modifier" >
+                        <i class="mdi mdi-pencil-box yellow" aria-hidden="true"></i> Activer
+                    </button>
+                    <button class="btn btn-primary col-6"  type="submit" [title]="
+                            publicationForm.valid
+                            ? 'Enregistrez vos données'
+                            : 'Verrouillé jusqu\'à correction des erreurs'
+                        " >
+                        <i class="fa fa-save green" aria-hidden="true"> </i> Save
+                    </button>
+                </div>
+            </div>
+        </div>
+       
+    
+    </form>
+   </div>
+</div>

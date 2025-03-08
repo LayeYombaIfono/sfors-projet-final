@@ -1,0 +1,408 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container mt-5 inscription">
+  <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
+
+    <div ngbAccordion [closeOthers]="true">
+        <div ngbAccordionItem [collapsed]="false" [destroyOnHide]="false">
+            <h6 ngbAccordionHeader>
+                <button type="button" ngbAccordionButton>
+                    INFORMATIONS DE L'ENTREPRISE
+                </button>
+            </h6>
+            <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                    <ng-template>
+  
+                      <div hidden class="col-md-6">
+                        <label for="uuid">Publication</label>
+                         <input  type="text"
+                           class="form-control" 
+                           formControlName="uuidPublication" id="uuidPublication" name="uuidPublication"
+                           required />
+                       </div>
+  
+                        <div class="row mt-2">
+                            <label for="nom" class="col-sm-2 col-form-label">Entreprise</label>
+                            <div class="col-sm-4">
+                                <input type="text" 
+                                class="form-control border border-secondary" 
+                                formControlName="entrepriseName" 
+                                id="entrepriseName"
+                                name="entrepriseName"
+                                placeholder="Entrez le nom de l'entreprise" >
+                            </div>
+                                        
+                             <label for="prenoms" class="col-sm-2 col-form-label">Code NIF</label>
+                             <div class="col-sm-4">
+                                  <input type="text" 
+                                  class="form-control border border-secondary" 
+                                  formControlName="codeNif" id="codeNif" 
+                                  name="codeNif"
+                                  placeholder="Entrez le code NIF"
+                                  > 
+                             </div>
+                         </div>
+                        
+                        <div class="row mt-2">
+                            <label for="nom" class="col-sm-2 col-form-label">N°RCCM</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                 class="form-control border border-secondary" 
+                                 formControlName="codeRccm" 
+                                 id="codeRccm" 
+                                 name="codeRccm" placeholder="Entrez le N° RCCM">
+                            </div>
+                                        
+                            <label for="prenoms" class="col-sm-2 col-form-label">Code déclarant</label>
+                            <div class="col-sm-4">
+                                <input type="text" 
+                                class="form-control border border-secondary" 
+                                 formControlName="codeDeclarant" 
+                                 id="codeDeclarant" 
+                                 name="codeDeclarant"
+                                 placeholder="Entrez le code déclarant"
+                                 > 
+                            </div>
+                         </div>
+  
+                         <div class="row mt-2">
+                            <label for="nom" class="col-sm-2 col-form-label">Addresse email</label>
+                             <div class="col-sm-4">
+                                <input type="text" 
+                                class="form-control border border-secondary"
+                                 formControlName="email"
+                                  id="email" 
+                                  name="email"
+                                  placeholder="addresse@email"
+                                  >
+                            </div> 
+                    </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+  
+    </div>
+  
+    <div ngbAccordion [closeOthers]="true">
+        <div ngbAccordionItem [destroyOnHide]="false">
+            <h6 ngbAccordionHeader>
+                <button type="button" ngbAccordionButton>
+                    INFORMATIONS DU PARTICIPANT
+                </button>
+            </h6>
+            <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                    <ng-template>
+                        <div class="row mt-2"> 
+                            <label for="prenoms" class="col-sm-2 col-form-label">Nom</label>
+                            <div class="col-sm-4">
+                                <input type="text" 
+                                class="form-control border border-secondary"
+                                 formControlName="nom" 
+                                 id="nom" name="nom"
+                                 placeholder="Nom"
+                                 > 
+                            </div>
+                            <label for="nom" class="col-sm-2 col-form-label">Prénoms</label>
+                            <div class="col-sm-4">
+                             <input type="text" 
+                             class="form-control border border-secondary" 
+                             formControlName="prenoms"
+                              id="prenoms" name="prenoms"
+                              placeholder="Prénoms"
+                              >
+                         </div>
+                        </div>
+                    
+                        <div class="row mt-2">
+                            <label for="prenoms" class="col-sm-2 col-form-label">Téléphone</label>
+                            <div class="col-sm-4">
+                                <input type="tel" class="form-control border border-secondary"
+                                 formControlName="telephone" 
+                                 id="telephone"
+                                  name="telephone"
+                                  placeholder="Tél: +224"
+                                  > 
+                            </div>
+                            <label for="adress" class="col-sm-2 col-form-label">Adresse</label>
+                            <div class="col-sm-4">
+                                <input type="text"
+                                 class="form-control border border-secondary" 
+                                 formControlName="adress" 
+                                 id="adress" 
+                                 name="adress"
+                                 placeholder="Quartier/ville"
+                                 >
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <label for="sexe" class="col-sm-2 col-form-label">Genre :</label>
+                            <div class="col-sm-4">
+                                <select class="form-control border border-secondary" id="sexe" name="sexe" formControlName="sexe">
+                                  <option value="">Sélectionnez</option>
+                                  <option *ngFor="let app of LesGenre" value="{{ app }}">
+                                    {{ app }}
+                                  </option>
+                                </select>
+                            </div>
+                            <label for="codeDeclarant" class="col-sm-2 col-form-label">Date d'inscription</label>
+                            <div class="col-sm-4">
+                                <input type="date" class="form-control border border-secondary" formControlName="dateInscription" id="dateInscription"
+                                name="dateInscription">
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+   <div class="row mt-3 ">
+        <div class="col-sm-12"></div>
+        <div class="col-sm-9 button-group">
+            <div class="pull-right btn-group col-5 p-2 registration">
+                <button [disabled]="inscriptionForm.invalid || submitted" class="btn btn-success col-6 btn-lg"  type="submit" 
+                [title]="inscriptionForm.valid
+                    ? 'Enregistrez vos données'
+                    :'Verrouillé jusqu\'à correction des erreurs' ">
+                    <i class="icon-check" aria-hidden="true"> </i> Valider
+                </button>
+            </div>
+        </div>
+    </div>
+  
+  </form>
+</div>
+<!-- <app-footer></app-footer> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Section Entreprise 
+
+<div class="container mt-5 mb-5">
+  <h2 class="text-center text-success text-uppercase mb-4">
+    Formulaire d'Inscription
+  </h2>
+
+  <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
+   
+    <div class="card shadow-lg p-4 mb-4">
+      <h4 class="text-black">Informations de l’Entreprise</h4>
+      <div class="row">
+
+        <div  class="col-md-6">
+         <label for="uuid">Publication</label>
+          <input  type="text"
+            class="form-control" 
+            formControlName="uuidPublication" id="uuidPublication" name="uuidPublication"
+            required />
+        </div>
+
+
+        <div class="col-md-6">
+          <label class="form-label text-black-70 pt-1"
+            >Nom de l'entreprise</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            formControlName="entrepriseName" id="entrepriseName" name="entrepriseName"
+            placeholder="Entrez le nom l'entreprise"
+            required
+          />
+          <div class="invalid-feedback">
+            Veuillez entrer le nom de l'entreprise.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-black-70 pt-1">Code NIF</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="codeNif" id="codeNif" name="codeNif"
+            placeholder="Entrez le code NIF"
+            required
+          />
+          <div class="invalid-feedback">
+            Veuillez entrer un Code NIF valide.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-black-70 pt-2">Code RCCM</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="codeRccm" id="codeRccm" name="codeRccm"
+            placeholder="Entrez le code RCCM"
+            required
+          />
+          <div class="invalid-feedback">Le Code RCCM est obligatoire.</div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-black-70 pt-2">Code Déclarant</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="codeDeclarant" id="codeDeclarant" name="codeDeclarant"
+            placeholder="Entrez le code Déclarant"
+            required
+          />
+          <div class="invalid-feedback">
+            Veuillez entrer un Code Déclarant valide.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-black-70 pt-2">Adresse-email</label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email" id="email" name="email"
+            placeholder="Adresse-email@gmail.com"
+            required
+          />
+          <div class="invalid-feedback">Veuillez entrer un email valide.</div>
+        </div>
+      </div>
+    </div>-->
+
+    <!-- Section Étudiant 
+    <div class="card shadow-lg p-4 mb-4">
+      <h4 class="text-black">Informations de l'incrit</h4>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-label text-black-70 pt-1">Nom</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="nom" name="nom" id="nom"
+            placeholder="Entrez le nom"
+            required
+          />
+          <div class="invalid-feedback">Le nom est requis.</div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-black-70 pt-1">Prénoms</label>
+          <input
+            type="text"
+            class="form-control" formControlName="prenoms" id="prenoms" name="prenoms"
+            placeholder="Entrez le prénoms"
+            required
+          />
+          <div class="invalid-feedback">Veuillez entrer les prénoms.</div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-black-70 pt-2">Téléphone</label>
+          <input
+            type="tel"
+            class="form-control"
+            formControlName="telephone" id="telephone" name="telephone"
+            placeholder="+224 621....."
+            required
+            pattern="[0-9]{10}"
+          />
+          <div class="invalid-feedback">
+            Veuillez entrer un numéro valide (10 chiffres).
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-black-70 pt-2">Genre</label>
+          <select
+            class="form-select text-black-50"
+            formControlName="sexe" id="sexe" name="sexe" required  >
+            <option value="">Sélectionnez...</option>
+            <option value="Homme">Homme</option>
+            <option value="Femme">Femme</option>
+          </select>
+          <div class="invalid-feedback">Veuillez sélectionner un genre.</div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-black-70 pt-2">Adresse</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="adress" id="adress" name="adress"
+            placeholder="Entrez une adresse"
+            required
+          />
+          <div class="invalid-feedback">L'adresse est obligatoire.</div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label text-black-70 pt-2">Date inscription</label>
+          <input
+            type="date"
+            class="form-control"
+            formControlName="dateInscription" id="dateInscription" name="dateInscription"
+            required
+          />
+          <div class="invalid-feedback">Veuillez entrer une date valide.</div>
+        </div>
+      </div>
+    </div>-->
+
+    <!-- Bouton de soumission 
+    <div class="text-start">
+      <button
+        type="submit"
+        class="btn btn-success btn-lg w-50 text-uppercase"
+        [disabled]="inscriptionForm.invalid"
+      >
+        S'inscrire
+      </button>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9 button-group">
+          <div class="pull-right btn-group col-6 mb-2">
+              <button [disabled]="isButtonActive" type="button" class="btn btn-outline-success col-6"  >
+                  <i class="mdi mdi-pencil-box yellow" aria-hidden="true"></i> Activer
+              </button>
+              <button class="btn btn-primary col-6"  type="submit" 
+              [title]="inscriptionForm.valid
+                      ? 'Enregistrez vos données'
+                      : 'Verrouillé jusqu\'à correction des erreurs' " >
+                  <i class="fa fa-save green" aria-hidden="true"> </i> Save
+              </button>
+          </div>
+      </div>
+  </div>
+  </form>
+</div>-->
+
+<!-- <app-footer></app-footer> -->

@@ -1,0 +1,22 @@
+
+.formation
+{
+    height: 100vh;
+}
+.card {
+    border-radius: 10px;
+    border: 1px solid #f1f1f1;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-success {
+    border-radius: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btn-success:hover {
+    background-color: #00b972;
+    transform: scale(1.05);
+  }
+  

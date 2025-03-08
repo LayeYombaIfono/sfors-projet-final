@@ -1,0 +1,126 @@
+<div class="container">
+  <form [formGroup]="formateurForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3 row">
+      <label for="nom" class="col-sm-3 col-form-label">Nom</label>
+      <div class="col-sm-9">
+        <input
+          type="text"
+          class="form-control border border-secondary"
+          formControlName="nom"
+          id="nom"
+          placeholder="Nom"
+        />
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label for="nom" class="col-sm-3 col-form-label">Prénoms</label>
+      <div class="col-sm-9">
+        <input
+          type="text"
+          class="form-control border border-secondary"
+          formControlName="prenoms"
+          id="prenoms"
+          placeholder="Prénoms"
+        />
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label for="nom" class="col-sm-3 col-form-label">Genre :</label>
+      <div class="col-sm-9">
+        <select
+          class="form-control border border-secondary"
+          id="sexe"
+          name="sexe"
+          formControlName="sexe"
+        >
+          <option value="">Sélectionnez</option>
+          <option *ngFor="let app of LesGenre" value="{{ app }}">
+            {{ app }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label for="nom" class="col-sm-3 col-form-label">Téléphone</label>
+      <div class="col-sm-9">
+        <input
+          type="tel"
+          class="form-control border border-secondary"
+          formControlName="phone"
+          id="phone"
+          placeholder="Tél: +224"
+        />
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label for="nom" class="col-sm-3 col-form-label">Adresse-email</label>
+      <div class="col-sm-9">
+        <input
+          type="email"
+          class="form-control border border-secondary"
+          formControlName="email"
+          id="email"
+          placeholder="adresse@email"
+        />
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label for="nom" class="col-sm-3 col-form-label">Profession</label>
+      <div class="col-sm-9">
+        <input
+          type="text"
+          class="form-control border border-secondary"
+          formControlName="profession"
+          id="profession"
+          placeholder="Profession"
+        />
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label for="nom" class="col-sm-3 col-form-label">Adress</label>
+      <div class="col-sm-9">
+        <input
+          type="text"
+          class="form-control border border-secondary"
+          formControlName="adress"
+          id="adress"
+          placeholder="Quartier/ville"
+        />
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9 button-group">
+        <div class="pull-right btn-group col-6 mb-2">
+          <button
+            [disabled]="isButtonActive"
+            type="button"
+            class="btn btn-outline-success col-6"
+            (click)="onActive()"
+            title="Modifier"
+          >
+            <i class="mdi mdi-pencil-box yellow" aria-hidden="true"></i> Activer
+          </button>
+          <button
+            class="btn btn-primary col-6"
+            type="submit"
+            [title]="
+              formateurForm.valid
+                ? 'Enregistrez vos données'
+                : 'Verrouillé jusqu\'à correction des erreurs'
+            "
+          >
+            <i class="fa fa-save green" aria-hidden="true"> </i> Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

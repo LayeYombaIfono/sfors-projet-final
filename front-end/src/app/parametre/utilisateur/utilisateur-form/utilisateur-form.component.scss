@@ -1,0 +1,278 @@
+// Styles pour le composant de profil utilisateur
+.modal-body {
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+    }
+  }
+  
+  .logo-section {
+    margin-bottom: 25px;
+  }
+  
+  // Style adapté pour le logo personnalisé
+  .logo {
+    width: 80px;
+    height: 80px;
+    background-color: transparent; // Fond transparent pour l'image
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    overflow: hidden; // Pour garder l'image dans le cercle
+    transition: transform 0.3s ease;
+    border: 2px solid #e9ecef; // Bordure légère
+    
+    &:hover {
+      transform: scale(1.05);
+      border-color: #0d6efd; // Changement de couleur de bordure au survol
+    }
+    
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; // Conserve les proportions de l'image
+    }
+  }
+  
+  .password-container {
+    position: relative;
+  }
+  
+  // Animation pour le spinner
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .fa-spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  // Style pour les champs obligatoires
+  .form-label {
+    font-weight: 500;
+  }
+  
+  // Style pour la section password
+  .password-section {
+    background-color: rgba(13, 110, 253, 0.03);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    
+    h4 {
+      color: #0d6efd;
+      font-weight: 600;
+    }
+  }
+  
+  // Amélioration du contraste pour l'accessibilité
+  .text-muted {
+    color: #5a6268 !important;
+  }
+  
+  // Animation des boutons
+  .btn {
+    transition: all 0.3s;
+    
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+    
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+  }
+  
+  // Style pour les champs d'entrée
+  .form-control, .form-select {
+    &:focus {
+      box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+  }
+  
+  // Style de séparation visuelle pour les sections
+  hr {
+    opacity: 0.1;
+    border-width: 2px;
+  }
+
+  /* Styles pour les icônes et les champs de formulaire */
+.input-group-text {
+    background-color: #f8f9fa;
+    border-right: none;
+    width: 45px; /* Largeur fixe pour toutes les icônes */
+    justify-content: center; /* Centre l'icône horizontalement */
+  }
+  
+  .form-control, .form-select {
+    border-left: none;
+  }
+  
+  /* Ajustement pour que les champs invalides gardent leur style de bordure gauche */
+  .form-control.is-invalid, .form-select.is-invalid {
+    border-left: none;
+    background-position: right calc(0.375em + 0.1875rem) center;
+  }
+  
+  /* Pour assurer que la bordure reste cohérente au focus */
+  .form-control:focus, .form-select:focus {
+    border-left: none;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  }
+  
+  /* Style pour les icônes */
+  .input-group-text .fa-solid {
+    color: #6c757d;
+    width: 16px; /* Largeur fixe pour toutes les icônes */
+    text-align: center;
+  }
+  
+  /* Style pour le bouton de visibilité du mot de passe */
+  .password-container .btn-outline-secondary {
+    border-color: #ced4da;
+    color: #6c757d;
+  }
+  
+  .password-container .btn-outline-secondary:hover {
+    background-color: #f8f9fa;
+    color: #495057;
+  }
+/* Styles pour le composant de profil utilisateur
+.modal-body {
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06);
+    }
+  }
+  
+  .logo-section {
+    margin-bottom: 25px;
+  }
+  
+  .logo {
+    width: 80px;
+    height: 80px;
+    background-color: #0d6efd;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 32px;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  
+  .password-container {
+    position: relative;
+  }
+  
+  // Animation pour le spinner
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .fa-spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  // Style pour les champs obligatoires
+  .form-label {
+    font-weight: 500;
+  }
+  
+  // Style pour la section password
+  .password-section {
+    background-color: rgba(13, 110, 253, 0.03);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    
+    h4 {
+      color: #0d6efd;
+      font-weight: 600;
+    }
+  }
+  
+  // Amélioration du contraste pour l'accessibilité
+  .text-muted {
+    color: #5a6268 !important;
+  }
+  
+  // Animation des boutons
+  .btn {
+    transition: all 0.3s;
+    
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+    
+    &:active:not(:disabled) {
+      transform: translateY(1px);
+    }
+  }
+  
+  // Style pour les champs d'entrée
+  .form-control, .form-select {
+    &:focus {
+      box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+  }
+  
+  // Style de séparation visuelle pour les sections
+  hr {
+    opacity: 0.1;
+    border-width: 2px;
+  }
+
+
+  
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.logo-section {
+  margin-bottom: 25px;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  background-color: #0d6efd;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 32px;
+}
+
+.password-container {
+  position: relative;
+}
+*/

@@ -1,0 +1,141 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header bg-primary text-white">Liste des formateurs</div>
+    <div class="card-body">
+      <div class="d-flex mt-3">
+        <input
+          type="text"
+          placeholder="Search"
+          class="form-control w-auto"
+          [(ngModel)]="csearchTerm"
+        />
+        <button
+          type="button"
+          class="btn btn-primary ms-auto"
+          (click)="openModal(editModal, null)"
+        >
+          Nouveau
+        </button>
+      </div>
+
+      <div class="table-responsive  mt-4">
+        <table class="table table-striped border">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th sortable="Name">Nom</th>
+              <th sortable="Name">Prenoms</th>
+              <th sortable="Name">Sexe</th>
+              <th sortable="Name">Telephone</th>
+              <th sortable="Name">Adresse email</th>
+              <th sortable="Name">Profession</th>
+              <th sortable="Name">Adress</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let formateur of cfiltreFormateurList
+                  | slice
+                    : (cpage - 1) * cpageSize
+                    : (cpage - 1) * cpageSize + cpageSize;
+                let i = index
+              "
+            >
+              <td>{{ i + 1 }}</td>
+              <td>
+                <ngb-highlight
+                  [result]="formateur.nom"
+                  [term]="csearchTerm"
+                ></ngb-highlight>
+              </td>
+              <td>
+                <ngb-highlight
+                  [result]="formateur.prenoms"
+                  [term]="csearchTerm"
+                ></ngb-highlight>
+              </td>
+
+              <td>
+                <ngb-highlight
+                  [result]="formateur.sexe"
+                  [term]="csearchTerm"
+                ></ngb-highlight>
+              </td>
+              <td>
+                <ngb-highlight
+                  [result]="formateur.phone"
+                  [term]="csearchTerm"
+                ></ngb-highlight>
+              </td>
+              <td>
+                <ngb-highlight
+                  [result]="formateur.email"
+                  [term]="csearchTerm"
+                ></ngb-highlight>
+              </td>
+              <td>
+                <ngb-highlight
+                  [result]="formateur.profession"
+                  [term]="csearchTerm"
+                ></ngb-highlight>
+              </td>
+              <td>
+                <ngb-highlight
+                  [result]="formateur.adress"
+                  [term]="csearchTerm"
+                ></ngb-highlight>
+              </td>
+              <td>
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  (click)="openModal(editModal, formateur)"
+                >
+                  <i class="fa fa-edit" aria-hidden="true"></i>
+                </button>
+                &nbsp;<button
+                  class="btn btn-outline-danger btn-sm"
+                  (click)="delete(formateur.uuid)"
+                >
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination
+          [(page)]="cpage"
+          [pageSize]="cpageSize"
+          [collectionSize]="totalLengthOfCollection"
+        ></ngb-pagination>
+        <select class="form-select" style="width: auto" [(ngModel)]="cpageSize">
+          <option [ngValue]="2">2 items per page</option>
+          <option [ngValue]="4">4 items per page</option>
+          <option [ngValue]="6">6 items per page</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #editModal let-modal>
+    <div class="modal-header bg-primary text-white">
+      <h5 class="modal-title text-white" id="editLabel">
+        {{ editAddLabel }} Formateur
+      </h5>
+      <button
+        type="button"
+        class="btn-close"
+        (click)="closeBtnClick()"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <div class="modal-body">
+      <app-formateur-form [childProperty]="parentProperty"></app-formateur-form>
+    </div>
+  </ng-template>
+</div>
