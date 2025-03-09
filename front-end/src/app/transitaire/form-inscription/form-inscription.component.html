@@ -1,178 +1,197 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="container mt-5 inscription">
+
   <form [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
 
+
+
     <div ngbAccordion [closeOthers]="true">
-        <div ngbAccordionItem [collapsed]="false" [destroyOnHide]="false">
-            <h6 ngbAccordionHeader>
-                <button type="button" ngbAccordionButton>
-                    INFORMATIONS DE L'ENTREPRISE
-                </button>
-            </h6>
-            <div ngbAccordionCollapse>
-                <div ngbAccordionBody>
-                    <ng-template>
-  
-                      <div hidden class="col-md-6">
-                        <label for="uuid">Publication</label>
-                         <input  type="text"
-                           class="form-control" 
-                           formControlName="uuidPublication" id="uuidPublication" name="uuidPublication"
-                           required />
-                       </div>
-  
-                        <div class="row mt-2">
-                            <label for="nom" class="col-sm-2 col-form-label">Entreprise</label>
-                            <div class="col-sm-4">
-                                <input type="text" 
-                                class="form-control border border-secondary" 
-                                formControlName="entrepriseName" 
-                                id="entrepriseName"
-                                name="entrepriseName"
-                                placeholder="Entrez le nom de l'entreprise" >
-                            </div>
-                                        
-                             <label for="prenoms" class="col-sm-2 col-form-label">Code NIF</label>
-                             <div class="col-sm-4">
-                                  <input type="text" 
-                                  class="form-control border border-secondary" 
-                                  formControlName="codeNif" id="codeNif" 
-                                  name="codeNif"
-                                  placeholder="Entrez le code NIF"
-                                  > 
-                             </div>
-                         </div>
-                        
-                        <div class="row mt-2">
-                            <label for="nom" class="col-sm-2 col-form-label">N°RCCM</label>
-                            <div class="col-sm-4">
-                                <input type="text"
-                                 class="form-control border border-secondary" 
-                                 formControlName="codeRccm" 
-                                 id="codeRccm" 
-                                 name="codeRccm" placeholder="Entrez le N° RCCM">
-                            </div>
-                                        
-                            <label for="prenoms" class="col-sm-2 col-form-label">Code déclarant</label>
-                            <div class="col-sm-4">
-                                <input type="text" 
-                                class="form-control border border-secondary" 
-                                 formControlName="codeDeclarant" 
-                                 id="codeDeclarant" 
-                                 name="codeDeclarant"
-                                 placeholder="Entrez le code déclarant"
-                                 > 
-                            </div>
-                         </div>
-  
-                         <div class="row mt-2">
-                            <label for="nom" class="col-sm-2 col-form-label">Addresse email</label>
-                             <div class="col-sm-4">
-                                <input type="text" 
-                                class="form-control border border-secondary"
-                                 formControlName="email"
-                                  id="email" 
-                                  name="email"
-                                  placeholder="addresse@email"
-                                  >
-                            </div> 
-                    </div>
-                    </ng-template>
+      <div ngbAccordionItem [collapsed]="false" [destroyOnHide]="false">
+        <h6 ngbAccordionHeader>
+          <button type="button" ngbAccordionButton>
+            INFORMATIONS DE L'ENTREPRISE
+          </button>
+        </h6>
+        <div ngbAccordionCollapse>
+          <div ngbAccordionBody>
+            <ng-template>
+
+              <div hidden class="col-md-6">
+                <label for="uuid">Publication</label>
+                <input type="text" class="form-control" formControlName="uuidPublication" id="uuidPublication"
+                  name="uuidPublication" required />
+              </div>
+
+              <div class="row mt-2">
+
+                <label for="nom" class="col-sm-2 col-form-label">Entreprise</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control border border-secondary" formControlName="entrepriseName"
+                    id="entrepriseName" name="entrepriseName" placeholder="Entrez le nom de l'entreprise">
+                  <span class="text-danger fs-6"
+                    *ngIf="inscriptionForm.controls.entrepriseName.hasError('required') && inscriptionForm.controls.entrepriseName.touched">Le
+                    nom
+                    de l'entreprise
+                    est obligatoire</span>
+                  <span class="text-danger fs-6"
+                    *ngIf="!inscriptionForm.controls.entrepriseName.hasError('required') && inscriptionForm.controls.entrepriseName.hasError('minlength')">Le
+                    nom de l'entreprise incorrect</span>
+
                 </div>
-            </div>
+
+                <label for="prenoms" class="col-sm-2 col-form-label">Code NIF</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control border border-secondary" formControlName="codeNif" id="codeNif"
+                    name="codeNif" placeholder="Entrez le code NIF">
+
+                  <div class="text-danger"
+                    *ngIf="inscriptionForm.controls.codeNif.hasError('required') && inscriptionForm.controls.codeNif.touched ">
+                    Le code NIF est obligatoire</div>
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <label for="nom" class="col-sm-2 col-form-label">N°RCCM</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control border border-secondary" formControlName="codeRccm"
+                    id="codeRccm" name="codeRccm" placeholder="Entrez le N° RCCM">
+                  <span class="text-danger"
+                    *ngIf="inscriptionForm.controls.codeRccm.hasError('required') && inscriptionForm.controls.codeRccm.touched">Le
+                    numéro RCCM est obligatoire</span>
+                </div>
+
+                <label for="prenoms" class="col-sm-2 col-form-label">Code déclarant</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control border border-secondary" formControlName="codeDeclarant"
+                    id="codeDeclarant" name="codeDeclarant" placeholder="Entrez le code déclarant">
+                  <span class="text-danger"
+                    *ngIf="inscriptionForm.controls.codeDeclarant.hasError('required') && inscriptionForm.controls.codeDeclarant.touched">Le
+                    code déclarant est obligatoire</span>
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <label for="nom" class="col-sm-2 col-form-label">Addresse email</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control border border-secondary" formControlName="email" id="email"
+                    name="email" placeholder="addresse@email">
+                  <span class="text-danger"
+                    *ngIf="inscriptionForm.controls.email.hasError('required') && inscriptionForm.controls.email.touched">Adresse
+                    email est obligatoire</span>
+                  <span class="text-danger"
+                    *ngIf="!inscriptionForm.controls.email.hasError('required') && inscriptionForm.controls.email.hasError('email')  ">Votre
+                    format adresse email est invalide</span>
+                </div>
+              </div>
+            </ng-template>
+          </div>
         </div>
-  
+      </div>
+
     </div>
-  
+
     <div ngbAccordion [closeOthers]="true">
-        <div ngbAccordionItem [destroyOnHide]="false">
-            <h6 ngbAccordionHeader>
-                <button type="button" ngbAccordionButton>
-                    INFORMATIONS DU PARTICIPANT
-                </button>
-            </h6>
-            <div ngbAccordionCollapse>
-                <div ngbAccordionBody>
-                    <ng-template>
-                        <div class="row mt-2"> 
-                            <label for="prenoms" class="col-sm-2 col-form-label">Nom</label>
-                            <div class="col-sm-4">
-                                <input type="text" 
-                                class="form-control border border-secondary"
-                                 formControlName="nom" 
-                                 id="nom" name="nom"
-                                 placeholder="Nom"
-                                 > 
-                            </div>
-                            <label for="nom" class="col-sm-2 col-form-label">Prénoms</label>
-                            <div class="col-sm-4">
-                             <input type="text" 
-                             class="form-control border border-secondary" 
-                             formControlName="prenoms"
-                              id="prenoms" name="prenoms"
-                              placeholder="Prénoms"
-                              >
-                         </div>
-                        </div>
-                    
-                        <div class="row mt-2">
-                            <label for="prenoms" class="col-sm-2 col-form-label">Téléphone</label>
-                            <div class="col-sm-4">
-                                <input type="tel" class="form-control border border-secondary"
-                                 formControlName="telephone" 
-                                 id="telephone"
-                                  name="telephone"
-                                  placeholder="Tél: +224"
-                                  > 
-                            </div>
-                            <label for="adress" class="col-sm-2 col-form-label">Adresse</label>
-                            <div class="col-sm-4">
-                                <input type="text"
-                                 class="form-control border border-secondary" 
-                                 formControlName="adress" 
-                                 id="adress" 
-                                 name="adress"
-                                 placeholder="Quartier/ville"
-                                 >
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <label for="sexe" class="col-sm-2 col-form-label">Genre :</label>
-                            <div class="col-sm-4">
-                                <select class="form-control border border-secondary" id="sexe" name="sexe" formControlName="sexe">
-                                  <option value="">Sélectionnez</option>
-                                  <option *ngFor="let app of LesGenre" value="{{ app }}">
-                                    {{ app }}
-                                  </option>
-                                </select>
-                            </div>
-                            <label for="codeDeclarant" class="col-sm-2 col-form-label">Date d'inscription</label>
-                            <div class="col-sm-4">
-                                <input type="date" class="form-control border border-secondary" formControlName="dateInscription" id="dateInscription"
-                                name="dateInscription">
-                            </div>
-                        </div>
-                    </ng-template>
+      <div ngbAccordionItem [destroyOnHide]="false">
+        <h6 ngbAccordionHeader>
+          <button type="button" ngbAccordionButton>
+            INFORMATIONS DU PARTICIPANT
+          </button>
+        </h6>
+        <div ngbAccordionCollapse>
+          <div ngbAccordionBody>
+            <ng-template>
+              <div class="row mt-2">
+                <label for="prenoms" class="col-sm-2 col-form-label">Nom</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control border border-secondary" formControlName="nom" id="nom"
+                    name="nom" placeholder="Nom">
+                  <span class="text-danger fs-6"
+                    *ngIf="inscriptionForm.controls.nom.hasError('required') && inscriptionForm.controls.nom.touched">Le
+                    nom est obligatoire</span>
+                  <span class="text-danger fs-6"
+                    *ngIf="!inscriptionForm.controls.nom.hasError('required') && inscriptionForm.controls.nom.hasError('minlength')">Le
+                    nom doit contenu 3 caractéres maximun</span>
+
                 </div>
-            </div>
+                <label for="nom" class="col-sm-2 col-form-label">Prénoms</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control border border-secondary" formControlName="prenoms" id="prenoms"
+                    name="prenoms" placeholder="Prénoms">
+                  <span class="text-danger fs-6"
+                    *ngIf="inscriptionForm.controls.prenoms.hasError('required') && inscriptionForm.controls.prenoms.touched">Le
+                    prénoms est obligatoire</span>
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <label for="prenoms" class="col-sm-2 col-form-label">Téléphone</label>
+                <div class="col-sm-4">
+                  <input type="tel" class="form-control border border-secondary" formControlName="telephone"
+                    id="telephone" name="telephone" placeholder="Tél: +224 621....">
+                  <span class="text-danger fs-6"
+                    *ngIf="inscriptionForm.controls.telephone.hasError('required') && inscriptionForm.controls.telephone.touched">Le
+                    numéro de téléphone est obligatoire</span>
+                  <span class="text-danger fs-6"
+                    *ngIf="!inscriptionForm.controls.telephone.hasError('required') && inscriptionForm.controls.telephone.hasError('minlength')">Le
+                    numéro de téléphone est incorrect</span>
+
+                  <!-- <span class="text-danger" *ngIf="inscriptionForm.controls.hasError('pattern')">Le numéro doit contenu
+                    uniquement des chiffres</span> -->
+                </div>
+                <label for="adress" class="col-sm-2 col-form-label">Adresse</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control border border-secondary" formControlName="adress" id="adress"
+                    name="adress" placeholder="Quartier/ville">
+                </div>
+              </div>
+              <div class="row mt-2">
+                <label for="sexe" class="col-sm-2 col-form-label">Genre :</label>
+                <div class="col-sm-4">
+                  <select class="form-control border border-secondary" id="sexe" name="sexe" formControlName="sexe">
+                    <option value="">Sélectionnez....</option>
+                    <option *ngFor="let app of LesGenre" value="{{ app }}">
+                      {{ app }}
+                    </option>
+                  </select>
+                  <span class="text-danger fs-6"
+                    *ngIf="inscriptionForm.controls.sexe.hasError('required') && inscriptionForm.controls.sexe.touched">Le
+                    sexe est obligatoire </span>
+                </div>
+
+                <label for="codeDeclarant" class="col-sm-2 col-form-label">Date d'inscription</label>
+                <div class="col-sm-4">
+                  <input type="date" class="form-control border border-secondary" formControlName="dateInscription"
+                    id="dateInscription" name="dateInscription">
+                  <span class="text-danger"
+                    *ngIf="inscriptionForm.controls.dateInscription.hasError('required') && inscriptionForm.controls.touched">
+                    La date est obligatoire </span>
+                  <!-- <span class="text-danger"
+                    *ngIf="!inscriptionForm.controls.dateInscription.hasError('required') && inscriptionForm.controls.dateInscription.hasError('pattern') ">
+                    Le format date invalide </span> -->
+                </div>
+
+              </div>
+            </ng-template>
+          </div>
         </div>
+      </div>
     </div>
-    
-   <div class="row mt-3 ">
-        <div class="col-sm-12"></div>
-        <div class="col-sm-9 button-group">
-            <div class="pull-right btn-group col-5 p-2 registration">
-                <button [disabled]="inscriptionForm.invalid || submitted" class="btn btn-success col-6 btn-lg"  type="submit" 
-                [title]="inscriptionForm.valid
+
+    <div class="row mt-3 ">
+      <div class="col-sm-12"></div>
+      <div class="col-sm-9 button-group">
+        <div class="pull-right btn-group col-5 p-2 registration">
+          <button [disabled]="inscriptionForm.invalid || submitted" class="btn btn-success col-6 btn-lg" type="submit"
+            [title]="inscriptionForm.valid
                     ? 'Enregistrez vos données'
                     :'Verrouillé jusqu\'à correction des erreurs' ">
-                    <i class="icon-check" aria-hidden="true"> </i> Valider
-                </button>
-            </div>
+            <i class="bi bi-floppy-fill px-2"></i> Enregistrer
+          </button>
         </div>
+      </div>
     </div>
-  
+
   </form>
 </div>
 <!-- <app-footer></app-footer> -->
@@ -213,7 +232,7 @@
 
 
 
- <!-- Section Entreprise 
+<!-- Section Entreprise 
 
 <div class="container mt-5 mb-5">
   <h2 class="text-center text-success text-uppercase mb-4">
@@ -301,7 +320,7 @@
       </div>
     </div>-->
 
-    <!-- Section Étudiant 
+<!-- Section Étudiant 
     <div class="card shadow-lg p-4 mb-4">
       <h4 class="text-black">Informations de l'incrit</h4>
       <div class="row">
@@ -375,7 +394,7 @@
       </div>
     </div>-->
 
-    <!-- Bouton de soumission 
+<!-- Bouton de soumission 
     <div class="text-start">
       <button
         type="submit"

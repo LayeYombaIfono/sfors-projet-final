@@ -1,12 +1,13 @@
-
-.inscription{
+.inscription {
   height: 100vh;
 }
 
-
+.btn-lg {
+  width: 30px;
+}
 
 @media screen and (max-width: 768px) {
-  .registration{
+  .registration {
     width: 100%;
   }
 }
