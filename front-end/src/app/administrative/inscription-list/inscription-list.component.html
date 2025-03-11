@@ -1,20 +1,11 @@
 <div class="container">
+
   <div class="card">
     <div class="card-header bg-primary text-white">Liste inscriptions</div>
     <div class="card-body">
       <div class="d-flex mt-3">
-        <input
-          type="text"
-          placeholder="Search"
-          class="form-control w-auto"
-          [(ngModel)]="csearchTerm"
-        />
-        <button
-          type="button"
-          hidden="true"
-          class="btn btn-primary ms-auto"
-          (click)="openModal(editModal, null)"
-        >
+        <input type="text" placeholder="Search" class="form-control w-auto" [(ngModel)]="csearchTerm" />
+        <button type="button" hidden="true" class="btn btn-primary ms-auto" (click)="openModal(editModal, null)">
           Nouveau
         </button>
       </div>
@@ -41,113 +32,64 @@
             </tr>
           </thead>
           <tbody>
-            <tr
-              *ngFor="
+            <tr *ngFor="
                 let inscription of cfiltreInscriptionList
                   | slice
                     : (cpage - 1) * cpageSize
                     : (cpage - 1) * cpageSize + cpageSize;
                 let i = index
-              "
-            >
+              ">
               <td>{{ i + 1 }}</td>
 
               <td>
-                <ngb-highlight
-                  [result]="inscription.entrepriseName"
-                  [term]="csearchTerm"
-                ></ngb-highlight>
+                <ngb-highlight [result]="inscription.entrepriseName" [term]="csearchTerm"></ngb-highlight>
               </td>
 
               <td>
-                <ngb-highlight
-                  [result]="inscription.codeNif"
-                  [term]="csearchTerm"
-                ></ngb-highlight>
+                <ngb-highlight [result]="inscription.codeNif" [term]="csearchTerm"></ngb-highlight>
               </td>
               <td>
-                <ngb-highlight
-                  [result]="inscription.codeRccm"
-                  [term]="csearchTerm"
-                ></ngb-highlight>
+                <ngb-highlight [result]="inscription.codeRccm" [term]="csearchTerm"></ngb-highlight>
               </td>
               <td>
-                <ngb-highlight
-                  [result]="inscription.datePublication"
-                  [term]="csearchTerm"
-                ></ngb-highlight>
+                <ngb-highlight [result]="inscription.datePublication" [term]="csearchTerm"></ngb-highlight>
               </td>
 
               <td>
-                <ngb-highlight
-                  [result]="inscription.codeDeclarant"
-                  [term]="csearchTerm"
-                ></ngb-highlight>
+                <ngb-highlight [result]="inscription.codeDeclarant" [term]="csearchTerm"></ngb-highlight>
               </td>
               <td>
-                <ngb-highlight
-                  [result]="inscription.email"
-                  [term]="csearchTerm"
-                ></ngb-highlight>
+                <ngb-highlight [result]="inscription.email" [term]="csearchTerm"></ngb-highlight>
               </td>
 
               <td>
-                <ngb-highlight
-                  [result]="inscription.nom"
-                  [term]="csearchTerm"
-                ></ngb-highlight
-                >&nbsp;
-                <ngb-highlight
-                  [result]="inscription.prenoms"
-                  [term]="csearchTerm"
-                ></ngb-highlight>
+                <ngb-highlight [result]="inscription.nom" [term]="csearchTerm"></ngb-highlight>&nbsp;
+                <ngb-highlight [result]="inscription.prenoms" [term]="csearchTerm"></ngb-highlight>
               </td>
               <td>
-                <ngb-highlight
-                  [result]="inscription.telephone"
-                  [term]="csearchTerm"
-                ></ngb-highlight>
+                <ngb-highlight [result]="inscription.telephone" [term]="csearchTerm"></ngb-highlight>
               </td>
               <td>
-                <ngb-highlight
-                  [result]="inscription.sexe"
-                  [term]="csearchTerm"
-                ></ngb-highlight>
+                <ngb-highlight [result]="inscription.sexe" [term]="csearchTerm"></ngb-highlight>
               </td>
 
               <td>
-                <ngb-highlight
-                  [result]="inscription.dateInscription"
-                  [term]="csearchTerm"
-                ></ngb-highlight>
+                <ngb-highlight [result]="inscription.dateInscription" [term]="csearchTerm"></ngb-highlight>
               </td>
               <td>
-                <ngb-highlight
-                  [result]="inscription.lebelleFormation"
-                  [term]="csearchTerm"
-                ></ngb-highlight>
+                <ngb-highlight [result]="inscription.lebelleFormation" [term]="csearchTerm"></ngb-highlight>
               </td>
 
               <td>
-                <ngb-highlight
-                  [result]="inscription.status"
-                  [term]="csearchTerm"
-                ></ngb-highlight>
+                <ngb-highlight [result]="inscription.status" [term]="csearchTerm"></ngb-highlight>
               </td>
 
               <td>
-                <button
-                  type="button"
-                  class="btn btn-outline-primary btn-sm"
-                  (click)="openModal(editModal, inscription)"
-                >
+                <button type="button" class="btn btn-outline-primary btn-sm"
+                  (click)="openModal(editModal, inscription)">
                   <i class="fa fa-edit" aria-hidden="true"></i>
                 </button>
-                &nbsp;<button
-                  type="button"
-                  class="btn btn-outline-danger btn-sm"
-                  (click)="delete(inscription.uuid)"
-                >
+                &nbsp;<button type="button" class="btn btn-outline-danger btn-sm" (click)="delete(inscription.uuid)">
                   <i class="fa fa-trash" aria-hidden="true"></i>
                 </button>
               </td>
@@ -157,11 +99,8 @@
       </div>
 
       <div class="d-flex justify-content-between p-2">
-        <ngb-pagination
-          [(page)]="cpage"
-          [pageSize]="cpageSize"
-          [collectionSize]="totalLengthOfCollection"
-        ></ngb-pagination>
+        <ngb-pagination [(page)]="cpage" [pageSize]="cpageSize"
+          [collectionSize]="totalLengthOfCollection"></ngb-pagination>
         <select class="form-select" style="width: auto" [(ngModel)]="cpageSize">
           <option [ngValue]="2">2 items per page</option>
           <option [ngValue]="4">4 items per page</option>
@@ -176,18 +115,11 @@
       <h5 class="modal-title text-white" id="editLabel">
         {{ editAddLabel }} Inscription
       </h5>
-      <button
-        type="button"
-        class="btn-close"
-        (click)="closeBtnClick()"
-        aria-label="Close"
-      ></button>
+      <button type="button" class="btn-close" (click)="closeBtnClick()" aria-label="Close"></button>
     </div>
 
     <div class="modal-body">
-      <app-inscription-form
-        [childProperty]="parentProperty"
-      ></app-inscription-form>
+      <app-inscription-form [childProperty]="parentProperty"></app-inscription-form>
     </div>
   </ng-template>
 </div>

@@ -13,6 +13,7 @@ import com.org.sfors.exception.ResourceAlreadyExistException;
 import com.org.sfors.mapper.Mapper;
 import com.org.sfors.repository.InscriptionRepository;
 import com.org.sfors.repository.PublicationRepository;
+import com.org.sfors.service.EmailService; // Importez le service d'email
 import com.org.sfors.service.InscriptionsServices;
 
 @Service
@@ -20,67 +21,70 @@ public class InscriptionsServiceImpl implements InscriptionsServices {
 
 	@Autowired
 	InscriptionRepository repositoryInscription;
-	
+
 	@Autowired
 	PublicationRepository repositoryPublication;
-	
+
+	@Autowired
+	private EmailService emailService; // Injectez le service d'email
+
 	@Override
 	public InscriptionDto addInscription(InscriptionDto inscriptiondto) {
-		// TODO Auto-generated method stub
+		// Code existant sans modification
 		InscriptionEntity inscription = new InscriptionEntity();
-		 
+
 		PublicationEntity publication = repositoryPublication.findById(inscriptiondto.getUuidPublication()).orElse(null);
-	   
+
 		InscriptionDto dtoInscription = new InscriptionDto();
-		 if(dtoInscription.equals(null)) {
-			 throw new ResourceAlreadyExistException(String.format("Inscription echoué !"));
-			} else {
-				inscription.setUuid(inscriptiondto.getUuid());
-				inscription.setEntrepriseName(inscriptiondto.getEntrepriseName());
-				inscription.setCodeNif(inscriptiondto.getCodeNif());
-				inscription.setCodeRccm(inscriptiondto.getCodeRccm());
-				inscription.setCodeDeclarant(inscriptiondto.getCodeDeclarant());
-				inscription.setEmail(inscriptiondto.getEmail());
-				
-				inscription.setNom(inscriptiondto.getNom());
-				inscription.setPrenoms(inscriptiondto.getPrenoms());
-				inscription.setTelephone(inscriptiondto.getTelephone());
-				inscription.setSexe(inscriptiondto.getSexe());
-				inscription.setAdress(inscriptiondto.getAdress());
-				inscription.setDateInscription(inscriptiondto.getDateInscription());
-				inscription.setPublication(publication);
-				
-				inscription.setStatus("ATTENTE");
-				
-				InscriptionEntity inscriptionsSave = repositoryInscription.save(inscription);
-				dtoInscription = Mapper.toInscriptionDto(inscriptionsSave);
-				dtoInscription.setCode(200);
-				dtoInscription.setStatut("Succes");
-				dtoInscription.setTitre("Save");
-				dtoInscription.setDescription("Inscription effectuée avec succès !");
-				
-		return dtoInscription;
+		if(dtoInscription.equals(null)) {
+			throw new ResourceAlreadyExistException(String.format("Inscription echoué !"));
+		} else {
+			inscription.setUuid(inscriptiondto.getUuid());
+			inscription.setEntrepriseName(inscriptiondto.getEntrepriseName());
+			inscription.setCodeNif(inscriptiondto.getCodeNif());
+			inscription.setCodeRccm(inscriptiondto.getCodeRccm());
+			inscription.setCodeDeclarant(inscriptiondto.getCodeDeclarant());
+			inscription.setEmail(inscriptiondto.getEmail());
+
+			inscription.setNom(inscriptiondto.getNom());
+			inscription.setPrenoms(inscriptiondto.getPrenoms());
+			inscription.setTelephone(inscriptiondto.getTelephone());
+			inscription.setSexe(inscriptiondto.getSexe());
+			inscription.setAdress(inscriptiondto.getAdress());
+			inscription.setDateInscription(inscriptiondto.getDateInscription());
+			inscription.setPublication(publication);
+
+			inscription.setStatus("ATTENTE");
+
+			InscriptionEntity inscriptionsSave = repositoryInscription.save(inscription);
+			dtoInscription = Mapper.toInscriptionDto(inscriptionsSave);
+			dtoInscription.setCode(200);
+			dtoInscription.setStatut("Succes");
+			dtoInscription.setTitre("Save");
+			dtoInscription.setDescription("Inscription effectuée avec succès !");
+
+			return dtoInscription;
+		}
+
 	}
-		
-}
 
 	@Override
 	public InscriptionDto updatInscription(InscriptionDto inscriptiondto, String uuid) {
 		// TODO Auto-generated method stub
 		InscriptionEntity inscription = new InscriptionEntity();
-		
+
 		inscription = repositoryInscription.findById(uuid).orElse(null);
 		PublicationEntity publication = repositoryPublication.findById(inscriptiondto.getUuidPublication()).orElse(null);
 		InscriptionDto dtoInscription = new InscriptionDto();
-		
+
 		inscription.setUuid(inscriptiondto.getUuid());
-		
+
 		inscription.setEntrepriseName(inscriptiondto.getEntrepriseName());
 		inscription.setCodeNif(inscriptiondto.getCodeNif());
 		inscription.setCodeRccm(inscriptiondto.getCodeRccm());
 		inscription.setCodeDeclarant(inscriptiondto.getCodeDeclarant());
 		inscription.setEmail(inscriptiondto.getEmail());
-		
+
 		inscription.setNom(inscriptiondto.getNom());
 		inscription.setPrenoms(inscriptiondto.getPrenoms());
 		inscription.setTelephone(inscriptiondto.getTelephone());
@@ -88,9 +92,9 @@ public class InscriptionsServiceImpl implements InscriptionsServices {
 		inscription.setAdress(inscriptiondto.getAdress());
 		inscription.setStatus("VALIDE");
 		inscription.setDateInscription(inscriptiondto.getDateInscription());
-		
+
 		inscription.setPublication(publication);
-		
+
 		InscriptionEntity inscriptionsUpdate = repositoryInscription.save(inscription);
 		dtoInscription = Mapper.toInscriptionDto(inscriptionsUpdate);
 		if(!dtoInscription.equals(null)){
@@ -98,15 +102,25 @@ public class InscriptionsServiceImpl implements InscriptionsServices {
 			dtoInscription.setStatut("Succes");
 			dtoInscription.setTitre("Save");
 			dtoInscription.setDescription("Inscription Validée avec succès !");
+
+			// Dans la méthode updatInscription, après validation réussie
+			emailService.envoyerEmailConfirmation(
+					
+					inscription.getEmail(),
+					inscription.getNom(),
+					inscription.getPrenoms()
+			);
+
 			return dtoInscription;
-			}else{
+		} else {
 			throw new ResourceAlreadyExistException(String.format("Validation Inscription echoué !"));
 		}
 	}
 
+	// Autres méthodes sans modification
 	@Override
 	public InscriptionDto getInscription(String uuid) {
-		// TODO Auto-generated method stub
+		// Code existant sans modification
 		InscriptionEntity inscription = new InscriptionEntity();
 		inscription = repositoryInscription.findById(uuid).orElseThrow();
 		return Mapper.toInscriptionDto(inscription);
@@ -114,22 +128,22 @@ public class InscriptionsServiceImpl implements InscriptionsServices {
 
 	@Override
 	public List<InscriptionDto> findAll() {
-		// TODO Auto-generated method stub
+		// Code existant sans modification
 		List<InscriptionEntity> lstInscriptions = repositoryInscription.findAll();
 		List<InscriptionDto> lstdtoInscription = new ArrayList<InscriptionDto>();
-		lstInscriptions.forEach(inscription -> lstdtoInscription.add(Mapper.toInscriptionDto(inscription)) );
+		lstInscriptions.forEach(inscription -> lstdtoInscription.add(Mapper.toInscriptionDto(inscription)));
 		return lstdtoInscription;
 	}
 
 	@Override
 	public InscriptionDto findByInscription(String email) {
-		// TODO Auto-generated method stub
+		// Code existant sans modification
 		return null;
 	}
 
 	@Override
 	public void deleteInscription(String uuid) {
-		// TODO Auto-generated method stub
+		// Code existant sans modification
 		repositoryInscription.deleteById(uuid);
 	}
 }
