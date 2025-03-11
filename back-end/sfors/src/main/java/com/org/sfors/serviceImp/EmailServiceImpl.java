@@ -18,12 +18,13 @@ public class EmailServiceImpl implements EmailService {
 		SimpleMailMessage message = new SimpleMailMessage();
 	        message.setFrom("formationteam565@gmail.com");
 	        message.setTo(destinataire);
-	        message.setSubject("Confirmation d'inscription à la formation");
+	        message.setSubject("Confirmation d'inscription à la formation sydonia");
 	        message.setText("Bonjour 👋 nous avons le plaisir de vous informer que l'inscription de " + nom + " " + prenoms + ", " +
 					" à notre  formation a été acceptée \n\n"
 	                + "Au plaisir de vous revoir veuillez respectez l'heure prévu dans la publication .\n\n"
 	                + "Cordialement,\n"
-	                + "L'équipe de formation de la Douane Nationale Sourcemind Team 2");
+	                + "L'équipe de la formation sydonia des Douanes Guinéennes. \n\n" 
+	                + " Sourcemind Team 2");
 
 	        mailSender.send(message);
 	}

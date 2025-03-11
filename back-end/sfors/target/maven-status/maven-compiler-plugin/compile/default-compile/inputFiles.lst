@@ -1,61 +1,61 @@
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\repository\FormateurRepository.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\JwtResponse.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\InscriptionEntity.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\EnumController.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\FormateursServiceImpl.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\exception\ErrorResponse.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\repository\UtilisateurRepository.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\repository\FormationRepository.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\FormationDto.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\AffectationEntity.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\mapper\Mapper.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\EmailServiceImpl.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\enums\EnumGenre.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\FormateurDto.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\FormateurEntity.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\repository\AffectationRepository.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\JwtUserDetailsService.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\LogoutController.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\security\JwtRequestFilter.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\AbstractEntity.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\UtilisateurEntity.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\PublicationDto.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\security\JwtAuthenticationEntryPoint.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\UtilisateurServiceImpl.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\AffectationServices.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\FormationEntity.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\security\JwtLogoutHandler.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\AffectationDto.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\AffectationsServiceImpl.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\InscriptionDto.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\PublicationEntity.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\PublicationController.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\exception\AccountException.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\FormationsServices.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\FormationController.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\ResponseDto.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\FormateurController.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\enums\EnumRole.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\JwtRequest.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\FormationsServiceImpl.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\repository\InscriptionRepository.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\EmailService.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\exception\ResourceAlreadyExistException.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\FormateursServices.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\InscriptionController.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\repository\PublicationRepository.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\JwtAuthenticationController.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\exception\ResourceException.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\config\CorsConfig.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\InscriptionsServices.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\security\JwtTokenUtil.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\PublicationServices.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\PublicationServiceImpl.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\UtilisateurController.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\UtilisateurService.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\InscriptionsServiceImpl.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\AffectationController.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\config\WebSecurityConfig.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\UtilisateurDto.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\config\SwaggerConfig.java
-C:\Users\Ifono\Desktop\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\SforsApplication.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\JwtRequest.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\enums\EnumRole.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\FormateurController.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\exception\ResourceException.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\UtilisateurServiceImpl.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\UtilisateurService.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\FormationController.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\ResponseDto.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\PublicationEntity.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\security\JwtAuthenticationEntryPoint.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\exception\ResourceAlreadyExistException.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\config\CorsConfig.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\PublicationDto.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\EnumController.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\FormateursServiceImpl.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\repository\UtilisateurRepository.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\security\JwtTokenUtil.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\FormationsServices.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\AffectationController.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\InscriptionsServiceImpl.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\AffectationEntity.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\mapper\Mapper.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\security\JwtLogoutHandler.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\repository\PublicationRepository.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\InscriptionController.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\FormateursServices.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\AffectationDto.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\FormationEntity.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\repository\AffectationRepository.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\JwtUserDetailsService.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\UtilisateurDto.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\security\JwtRequestFilter.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\UtilisateurController.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\JwtResponse.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\FormateurDto.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\UtilisateurEntity.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\enums\EnumGenre.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\EmailServiceImpl.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\FormationDto.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\LogoutController.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\FormateurEntity.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\config\SwaggerConfig.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\AbstractEntity.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\PublicationController.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\exception\ErrorResponse.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\PublicationServices.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\controller\JwtAuthenticationController.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\repository\InscriptionRepository.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\InscriptionsServices.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\SforsApplication.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\repository\FormationRepository.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\dto\InscriptionDto.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\exception\AccountException.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\repository\FormateurRepository.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\AffectationsServiceImpl.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\FormationsServiceImpl.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\config\WebSecurityConfig.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\serviceImp\PublicationServiceImpl.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\entity\InscriptionEntity.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\EmailService.java
+E:\Sourcemind Training Guinea\Final project teams-2\sfors-projet-final\back-end\sfors\src\main\java\com\org\sfors\service\AffectationServices.java
