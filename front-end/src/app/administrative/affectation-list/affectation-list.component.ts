@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Affectation } from 'src/app/models/Affectation';
 import { AffectationService } from 'src/app/services/affectation.service';
 
@@ -16,12 +18,22 @@ export class AffectationListComponent implements OnInit {
   sortAffectationList:Affectation[] = [];
   filtreAffectation:Affectation[] = [];
   cfiltreAffectationList:Affectation[] = [];
-  page = 1;
-  pageSize = 2;
+  //page = 1;
+  //pageSize = 2;
+
+   // Pagination variables
+    cpage = 1;
+    cpageSize = 4;
+    totalLengthOfCollection: number = 0;
+    
+    // Remplace l'ancien système de recherche
+    searchControl = new FormControl('');
+    loading = false;
+    error = '';
 
   editAddLabel: string = 'Edit';
   affectationDetail: Affectation |null=null;
-  totalLengthOfCollection: number=0;
+  //totalLengthOfCollection: number=0;
     
 
   constructor(private modalService: NgbModal, private affectationService:AffectationService) {
@@ -31,8 +43,73 @@ export class AffectationListComponent implements OnInit {
   }
 
   parentProperty = new Affectation();
+
+
+  ngOnInit() {
+    this.getAffectations();
+    
+    // Configuration de la recherche avec debounce
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300), // Attendre 300ms après la dernière frappe
+      distinctUntilChanged() // Ignorer si la valeur n'a pas changé
+    ).subscribe(value => {
+      this.filtrerAffectations(value || '');
+    });
+  }
+
+  getAffectations() {
+    this.loading = true;
+    this.error = '';
+    
+    this.affectationService.getAffectations().subscribe({
+      next: (res) => {
+        this.affectationList = res;
+        this.cfiltreAffectationList = res;
+        this.totalLengthOfCollection = res.length;
+        this.loading = false;
+        
+        // Filtrer les résultats si une recherche est déjà en cours
+        if (this.searchControl.value) {
+          this.filtrerAffectations(this.searchControl.value);
+        }
+      },
+      error: (err) => {
+        this.error = 'Erreur lors du chargement des affectations: ' + (err.message || 'Erreur inconnue');
+        this.loading = false;
+      }
+    });
+  }
+
+  filtrerAffectations(texte: string): void {
+    // Filtrage par nom, prénom formateur, libellé formation ou description
+    const termeRecherche = texte.toLowerCase().trim();
+   
+    if (!termeRecherche) {
+      this.cfiltreAffectationList = [...this.affectationList];
+    } else {
+      this.cfiltreAffectationList = this.affectationList.filter(affectation => 
+        (affectation.nomFormateur && affectation.nomFormateur.toLowerCase().includes(termeRecherche)) ||
+        (affectation.prenomFormateur && affectation.prenomFormateur.toLowerCase().includes(termeRecherche)) ||
+        (affectation.libelleFormation && affectation.libelleFormation.toLowerCase().includes(termeRecherche)) ||
+        (affectation.descriptionFormation && affectation.descriptionFormation.toLowerCase().includes(termeRecherche)) ||
+        (affectation.dateAffectation && affectation.dateAffectation.toString().toLowerCase().includes(termeRecherche))
+      );
+    }
+   
+    // Mise à jour des totaux pour la pagination
+    this.totalLengthOfCollection = this.cfiltreAffectationList.length;
+  }
+
+  // Pour maintenir la compatibilité avec l'ancien système si nécessaire
+  get csearchTerm(): string {
+    return this.searchControl.value || '';
+  }
   
-    ngOnInit() {
+  set csearchTerm(val: string) {
+    this.searchControl.setValue(val);
+  }
+  
+   /* ngOnInit() {
       this.getAffectations()
     }
   
@@ -47,7 +124,7 @@ export class AffectationListComponent implements OnInit {
       });
     }
   
-
+*/
      //Searching..........
   _searchTerm: string='';
   get searchTerm(): string {
@@ -67,11 +144,11 @@ export class AffectationListComponent implements OnInit {
   }
 
   //complete example................
-  cpage = 1;
-  cpageSize = 4;
+ // cpage = 1;
+ // cpageSize = 4;
 
   _csearchTerm: string='';
-  get csearchTerm(): string {
+/*  get csearchTerm(): string {
     return this._csearchTerm;
   }
   set csearchTerm(val: string) {
@@ -79,7 +156,7 @@ export class AffectationListComponent implements OnInit {
     this.cfiltreAffectationList = this.cfilter(val);
     this.totalLengthOfCollection = this.cfiltreAffectationList.length;
   }
-
+*/
 
   cfilter(v: string) {
     return this.affectationList.filter(affectation => 
@@ -157,6 +234,11 @@ export class AffectationListComponent implements OnInit {
         }
       })
     }
+
+    // Optimisation des performances pour ngFor
+  trackByFn(index: number, item: Affectation): string {
+    return item.uuid || index.toString();
+  }
 
   }
   

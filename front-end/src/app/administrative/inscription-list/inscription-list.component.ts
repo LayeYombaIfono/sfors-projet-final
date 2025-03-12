@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Inscription } from 'src/app/models/Inscription';
 import { InscriptionService } from 'src/app/services/inscription.service';
 import Swal from 'sweetalert2';
@@ -16,12 +18,22 @@ export class InscriptionListComponent implements OnInit{
   sortInscriptionList:Inscription[] = [];
   filtreInscription:Inscription[] = [];
   cfiltreInscriptionList:Inscription[] = [];
-  page = 1;
-  pageSize = 2;
+ // page = 1;
+  //pageSize = 2;
+
+  // Pagination variables
+      cpage = 1;
+      cpageSize = 4;
+      totalLengthOfCollection: number = 0;
+      
+      // Remplace l'ancien système de recherche
+      searchControl = new FormControl('');
+      loading = false;
+      error = '';
     
   editAddLabel: string = 'Edit';
   inscriptionDetail: Inscription |null=null;
-  totalLengthOfCollection: number=0;
+  //totalLengthOfCollection: number=0;
 
 constructor(private modalService: NgbModal, private inscriptionService:InscriptionService) {
    this.filtreInscription = this.inscriptionList;
@@ -31,17 +43,79 @@ constructor(private modalService: NgbModal, private inscriptionService:Inscripti
 
 
 parentProperty = new Inscription();
-    ngOnInit() {
-    this.getInscription();
+
+ngOnInit() {
+  this.getInscription();
+  
+  // Configuration de la recherche avec debounce
+  this.searchControl.valueChanges.pipe(
+    debounceTime(300), // Attendre 300ms après la dernière frappe
+    distinctUntilChanged() // Ignorer si la valeur n'a pas changé
+  ).subscribe(value => {
+    this.filtrerInscriptions(value || '');
+  });
 }
 
-getInscription(){
-    this.inscriptionService.getInscriptions().subscribe( res => {
-    console.log(res)
-    this.cfiltreInscriptionList = res
-    this.totalLengthOfCollection = res.length
-    });
+getInscription() {
+  this.loading = true;
+  this.error = '';
+  
+  this.inscriptionService.getInscriptions().subscribe({
+    next: (res) => {
+      this.inscriptionList = res;
+      this.cfiltreInscriptionList = res;
+      this.totalLengthOfCollection = res.length;
+      this.loading = false;
+      
+      // Filtrer les résultats si une recherche est déjà en cours
+      if (this.searchControl.value) {
+        this.filtrerInscriptions(this.searchControl.value);
+      }
+    },
+    error: (err) => {
+      this.error = 'Erreur lors du chargement des inscriptions: ' + (err.message || 'Erreur inconnue');
+      this.loading = false;
+    }
+  });
 }
+
+filtrerInscriptions(texte: string): void {
+  // Filtrage par tous les champs pertinents
+  const termeRecherche = texte.toLowerCase().trim();
+ 
+  if (!termeRecherche) {
+    this.cfiltreInscriptionList = [...this.inscriptionList];
+  } else {
+    this.cfiltreInscriptionList = this.inscriptionList.filter(inscription => 
+      (inscription.entrepriseName && inscription.entrepriseName.toLowerCase().includes(termeRecherche)) ||
+      (inscription.codeNif && inscription.codeNif.toLowerCase().includes(termeRecherche)) ||
+      (inscription.codeRccm && inscription.codeRccm.toLowerCase().includes(termeRecherche)) ||
+      (inscription.codeDeclarant && inscription.codeDeclarant.toLowerCase().includes(termeRecherche)) ||
+      (inscription.email && inscription.email.toLowerCase().includes(termeRecherche)) ||
+      (inscription.nom && inscription.nom.toLowerCase().includes(termeRecherche)) ||
+      (inscription.prenoms && inscription.prenoms.toLowerCase().includes(termeRecherche)) ||
+      (inscription.telephone && inscription.telephone.toLowerCase().includes(termeRecherche)) ||
+      (inscription.adress && inscription.adress.toLowerCase().includes(termeRecherche)) ||
+      (inscription.sexe && inscription.sexe.toLowerCase().includes(termeRecherche)) ||
+      (inscription.status && inscription.status.toLowerCase().includes(termeRecherche)) ||
+      (inscription.lebelleFormation && inscription.lebelleFormation.toLowerCase().includes(termeRecherche)) ||
+      (inscription.dateInscription && inscription.dateInscription.toString().toLowerCase().includes(termeRecherche))
+    );
+  }
+ 
+  // Mise à jour des totaux pour la pagination
+  this.totalLengthOfCollection = this.cfiltreInscriptionList.length;
+}
+
+// Pour maintenir la compatibilité avec l'ancien système si nécessaire
+get csearchTerm(): string {
+  return this.searchControl.value || '';
+}
+
+set csearchTerm(val: string) {
+  this.searchControl.setValue(val);
+}
+   
 
 
 /**
@@ -72,18 +146,10 @@ filter(v: string) {
 
 
   //complete example................
-  cpage = 1;
-  cpageSize = 4;
+ 
 
   _csearchTerm: string='';
-  get csearchTerm(): string {
-    return this._csearchTerm;
-  }
-  set csearchTerm(val: string) {
-    this._csearchTerm = val;
-    this.cfiltreInscriptionList = this.cfilter(val);
-    this.totalLengthOfCollection = this.cfiltreInscriptionList.length;
-  }
+
 
   cfilter(v: string) {
     return this.inscriptionList.filter(inscription => 
@@ -167,6 +233,11 @@ filter(v: string) {
               }
             })
           }
+
+          // Optimisation des performances pour ngFor
+  trackByFn(index: number, item: Inscription): string {
+    return item.uuid || index.toString();
+  }
 
 
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { Formation } from 'src/app/models/Formation';
 import { FormationService } from 'src/app/services/formation.service';
 import Swal from 'sweetalert2';
@@ -15,13 +17,23 @@ export class FormationListComponent  implements OnInit{
   sortFormationList:Formation[] = [];
   filtreFormation:Formation[] = [];
   cfiltreFormationList:Formation[] = [];
-  page = 1;
-  pageSize = 2;
+ // page = 1;
+  //pageSize = 2;
+
+  // Pagination variables
+  cpage = 1;
+  cpageSize = 4;
+  totalLengthOfCollection: number = 0;
+  
+  // Remplace l'ancien système de recherche
+  searchControl = new FormControl('');
+  loading = false;
+  error = '';
 
 
   editAddLabel: string = 'Edit';
   formationDetail: Formation |null=null;
-  totalLengthOfCollection: number=0;
+  //totalLengthOfCollection: number=0;
 
 
   constructor(private modalService: NgbModal, private formationService:FormationService) {
@@ -32,7 +44,7 @@ export class FormationListComponent  implements OnInit{
   }
 
   parentProperty = new Formation();
-  ngOnInit() {
+ /* ngOnInit() {
    this.getFormations()
  }
 
@@ -44,6 +56,68 @@ export class FormationListComponent  implements OnInit{
     this.cfiltreFormationList = res
     this.totalLengthOfCollection = res.length
   });
+}
+  */
+
+ngOnInit() {
+  this.getFormations();
+  
+  // Configuration de la recherche avec debounce
+  this.searchControl.valueChanges.pipe(
+    debounceTime(300), // Attendre 300ms après la dernière frappe
+    distinctUntilChanged() // Ignorer si la valeur n'a pas changé
+  ).subscribe(value => {
+    this.filtrerFormations(value || '');
+  });
+}
+
+getFormations() {
+  this.loading = true;
+  this.error = '';
+  
+  this.formationService.getFormations().subscribe({
+    next: (res) => {
+      this.formationList = res;
+      this.cfiltreFormationList = res;
+      this.totalLengthOfCollection = res.length;
+      this.loading = false;
+      
+      // Filtrer les résultats si une recherche est déjà en cours
+      if (this.searchControl.value) {
+        this.filtrerFormations(this.searchControl.value);
+      }
+    },
+    error: (err) => {
+      this.error = 'Erreur lors du chargement des formations: ' + (err.message || 'Erreur inconnue');
+      this.loading = false;
+    }
+  });
+}
+
+filtrerFormations(texte: string): void {
+  // Filtrage par libellé et description
+  const termeRecherche = texte.toLowerCase().trim();
+ 
+  if (!termeRecherche) {
+    this.cfiltreFormationList = [...this.formationList];
+  } else {
+    this.cfiltreFormationList = this.formationList.filter(formation => 
+      (formation.libelleFormation && formation.libelleFormation.toLowerCase().includes(termeRecherche)) ||
+      (formation.descriptionFormation && formation.descriptionFormation.toLowerCase().includes(termeRecherche))
+    );
+  }
+ 
+  // Mise à jour des totaux pour la pagination
+  this.totalLengthOfCollection = this.cfiltreFormationList.length;
+}
+
+// Pour maintenir la compatibilité avec l'ancien système si nécessaire
+get csearchTerm(): string {
+  return this.searchControl.value || '';
+}
+
+set csearchTerm(val: string) {
+  this.searchControl.setValue(val);
 }
 
  //Searching..........
@@ -62,11 +136,11 @@ export class FormationListComponent  implements OnInit{
   );
 }
 
-cpage = 1;
-  cpageSize = 4;
+//cpage = 1;
+  //cpageSize = 4;
 
   _csearchTerm: string='';
-  get csearchTerm(): string {
+  /*get csearchTerm(): string {
     return this._csearchTerm;
   }
   set csearchTerm(val: string) {
@@ -74,7 +148,7 @@ cpage = 1;
     this.cfiltreFormationList = this.cfilter(val);
     this.totalLengthOfCollection = this.cfiltreFormationList.length;
   }
-
+*/
   cfilter(v: string) {
     return this.formationList.filter(x => 
     x.libelleFormation?.toLowerCase().indexOf(v.toLowerCase()) !== -1 ||
@@ -150,4 +224,8 @@ cpage = 1;
       })
     }
 
+    // Optimisation des performances pour ngFor
+  trackByFn(index: number, item: Formation): string {
+    return item.uuid || index.toString();
+  }
 }
